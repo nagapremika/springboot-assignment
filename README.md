@@ -31,3 +31,5 @@ to the Internet.
 multiple device screens.
 3. App should have an intuitive UI that can be operated by
 novice expert Internet users.
+
+Tools to be used: Maven, Spring Boot, Mysql database, Postman, Tomcat server.
