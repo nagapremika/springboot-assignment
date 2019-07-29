@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@RestController     //RestController which performs both Controller and ResponseBody functionality
 @RequestMapping("api")
 public class MuzixController {
 
@@ -26,8 +26,8 @@ public class MuzixController {
     {
         ResponseEntity responseEntity;
 
-        muzixService.saveTrack(muzix);
-        responseEntity=new ResponseEntity<>("Created successfully", HttpStatus.CREATED);
+        muzixService.saveTrack(muzix);  //Displays all tracks
+        responseEntity=new ResponseEntity<>("Created successfully", HttpStatus.CREATED);    //Creates a track
 
         return responseEntity;
     }
@@ -36,26 +36,28 @@ public class MuzixController {
     public ResponseEntity<?> getAllMuzix()
 
     {
-        muzixService.getList();
+        muzixService.getList(); //Retrieves the track data
         return new ResponseEntity<>(muzixService.getAllTracks(), HttpStatus.OK);
     }
     //Handles delete operation
     @DeleteMapping("muzix")
     public ResponseEntity<?> deleteMuzix(@RequestBody Muzix muzix) throws TrackNotFoundException {
 
-
+//Deletes a particular row in table
         return new ResponseEntity<>(muzixService.deleteTrack(muzix.getTrackId()), HttpStatus.OK);
 
     }
     //Handles update operation
     @PutMapping("muzix")
     public ResponseEntity<?> updateMuzix(@RequestBody Muzix muzix) throws TrackNotFoundException {
+//         Can update the track with the given id
         return new ResponseEntity<>(muzixService.updateTrack(muzix,muzix.getTrackId()), HttpStatus.OK);
 
     }
     @GetMapping("trackByName")
     public ResponseEntity<?> getTrackByName(@RequestParam String name) throws TrackNotFoundException
     {
+        //tracks the track by the name of track
         return new ResponseEntity<List<Muzix>>(muzixService.getTracksByName(name), HttpStatus.OK);
     }
 
